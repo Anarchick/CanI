@@ -1,0 +1,6 @@
+name: CanI
+version: '${version}'
+main: fr.anarchick.cani.CanI
+api-version: 1.13
+authors: [ Anarchick ]
+description: This cross-version API is used to determine if an action can be performed without compromising the functionality of other plugins.

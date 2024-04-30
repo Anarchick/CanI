@@ -9,7 +9,7 @@ public final class CanI extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        checkUpdate();
+        //checkUpdate();
     }
 
     @Override

@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.jetbrains:annotations:20.1.0'
+    compileOnly 'org.jetbrains:annotations:20.1.0'
     compileOnly 'org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT'
     compileOnly 'org.projectlombok:lombok:1.18.32'
     annotationProcessor 'org.projectlombok:lombok:1.18.32'
@@ -68,7 +68,7 @@ processResources {
 task export() {
     group = "other"
     description = "build gradle into external folder"
-    def fromFile = 'build/libs/'+archivesBaseName+'-'+version+'.jar'
+    def fromFile = 'build/libs/'+archivesBaseName+'-'+version+'-all.jar'
     def destinations = [
             'C:/Users/aeim/Documents/minecraft/law/server/FloatingRealms/plugins',
             'C:/Users/aeim/Documents/minecraft/law/programming/FloatingRealmsCore/libs',
@@ -83,6 +83,9 @@ task export() {
                 copy {
                     from fromFile
                     into destDir
+                    rename { String fileName ->
+                        fileName.replace("-all", "")
+                    }
                 }
             } else {
                 println "The folder '" + destDir + "' does not exist"
@@ -91,4 +94,4 @@ task export() {
     }
 }
 
-build.finalizedBy export
+shadowJar.finalizedBy export

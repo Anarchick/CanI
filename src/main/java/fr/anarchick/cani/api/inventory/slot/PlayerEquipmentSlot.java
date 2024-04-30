@@ -20,10 +20,6 @@ public class PlayerEquipmentSlot extends Slot {
         this.playerInv = inv;
     }
 
-    public EquipmentSlot getSlot() {
-        return slot;
-    }
-
     @Nullable
     @Override
     public ItemStack getItem() {

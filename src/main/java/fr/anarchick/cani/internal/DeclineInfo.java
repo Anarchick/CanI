@@ -8,13 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("unused")
-public class DeclineInfo {
+public record DeclineInfo(JavaPlugin plugin, String message, Map<String, Object> data) {
 
     private static final String EMPTY = "";
-
-    private final JavaPlugin plugin;
-    private final String message;
-    private final Map<String, Object> data;
 
     public DeclineInfo(@NotNull JavaPlugin plugin, @Nullable String message, @Nullable Map<String, Object> data) {
         this.plugin = plugin;
@@ -22,18 +18,21 @@ public class DeclineInfo {
         this.data = data;
     }
 
+    @Override
     @NotNull
-    public JavaPlugin getPlugin() {
+    public JavaPlugin plugin() {
         return plugin;
     }
 
+    @Override
     @NotNull
-    public String getMessage() {
+    public String message() {
         return message;
     }
 
+    @Override
     @NotNull
-    public Map<String, Object> getData() {
+    public Map<String, Object> data() {
         return (data == null) ? new HashMap<>() : data;
     }
 

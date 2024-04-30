@@ -49,7 +49,7 @@ public class Response {
         }
 
         return this.declineInfoSet.stream().allMatch(declineInfo ->
-                Arrays.stream(plugins).anyMatch(plugin -> declineInfo.getPlugin().equals(plugin))
+                Arrays.stream(plugins).anyMatch(plugin -> declineInfo.plugin().equals(plugin))
         );
     }
 

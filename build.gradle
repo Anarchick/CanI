@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id("com.github.johnrengelman.shadow") version "7.1.1"
 }
 
 group = 'fr.anarchick'
@@ -15,6 +16,9 @@ repositories {
         name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
     }
+    maven {
+        url = 'https://hub.jeff-media.com/nexus/repository/jeff-media-public/'
+    }
 }
 
 dependencies {
@@ -24,6 +28,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.32'
     testCompileOnly 'org.projectlombok:lombok:1.18.32'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
+    implementation("com.jeff_media:SpigotUpdateChecker:3.0.3")
 }
 
 def targetJavaVersion = 17
@@ -35,6 +40,10 @@ java {
     if (JavaVersion.current() < javaVersion) {
         toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
     }
+}
+
+shadowJar {
+    relocate 'com.jeff_media.updatechecker', 'fr.anarchick.cani.updatechecker'
 }
 
 tasks.withType(JavaCompile) {
